@@ -1,12 +1,12 @@
 import React from "react";
-import Header from "./common/components/Header";
+import Layout from "./common/components/Layout";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    <div>
-      <Header />
-      <div>todo list</div>
-    </div>
+    <Layout>
+      <Home />
+    </Layout>
   );
 }
 
