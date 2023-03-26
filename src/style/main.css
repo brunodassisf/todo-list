@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  main,
+  #root {
+    @apply h-full;
+  }
+}
+
+@layer components {
+  .input {
+    @apply block w-full p-3 text-sm text-gray-900 border rounded-md bg-white focus:ring-offset-0 focus:ring transition-all outline-none;
+  }
+}
