@@ -1,28 +1,22 @@
 import { FormikHelpers, useFormik } from "formik";
+import { useContext } from "react";
 import { toast } from "react-toastify";
 import Input from "../../common/components/Input";
 import Textarea from "../../common/components/Textarea";
+import { TaskContext } from "../../util/Context/task";
+import { Types } from "../../util/Context/task/reducerTask";
 import validationSchema from "./AddTask.validation";
 
 export default function AddTask() {
+  const { dispatch } = useContext(TaskContext);
+
   const initialValues = {
     name: "",
-    observations: "",
+    observation: "",
   };
 
   const onSubmit = (values: any, formikHelpers: FormikHelpers<any>) => {
-    const tasks = localStorage.getItem("tasks");
-
-    if (tasks) {
-      const items = JSON.parse(tasks);
-      items.push(values);
-      localStorage.setItem("tasks", JSON.stringify(items));
-    } else {
-      const arr = [];
-      arr.push(values);
-      localStorage.setItem("tasks", JSON.stringify(arr));
-    }
-
+    dispatch({ type: Types.Create, payload: values });
     formikHelpers.resetForm({ values: initialValues });
     toast.success(`Tarefa ${values.name} criada.`);
   };
@@ -51,15 +45,17 @@ export default function AddTask() {
         <Textarea
           rows={4}
           name="observation"
-          value={values.observations}
+          value={values.observation}
           onChange={handleChange}
           placeholder="Observações"
         />
 
         {touched ? (
           <ul className="list-disc ml-5">
-            {Object.values(errors).map((item) => (
-              <li className="text-red-600">{item}</li>
+            {Object.values(errors).map((item, index) => (
+              <li key={index} className="text-red-600">
+                {item}
+              </li>
             ))}
           </ul>
         ) : null}
