@@ -14,6 +14,8 @@ type ActionMap<M extends { [index: string]: any }> = {
 export enum Types {
   Create = "CREATE_TASK",
   Complete = "COMPLETE_TASK",
+  Clear = "CLEAR_TASKS",
+  Delete = "DELETE_TASK",
 }
 
 type TaskPayload = {
@@ -22,6 +24,10 @@ type TaskPayload = {
     observation: string;
   };
   [Types.Complete]: {
+    id: number;
+  };
+  [Types.Clear]: {};
+  [Types.Delete]: {
     id: number;
   };
 };
@@ -40,8 +46,18 @@ export const taskReducer = (state: ITask[], action: TaskAction): ITask[] => {
         }
         return { ...item };
       });
-
       return findAndUpdateTask;
+    case Types.Delete:
+      const newState = state.filter((value, index, arr) => {
+        if (value.id === action.payload.id) {
+          arr.splice(index, 1);
+          return true;
+        }
+        return false;
+      });
+      return newState;
+    case Types.Clear:
+      return [];
     default:
       return state;
   }
