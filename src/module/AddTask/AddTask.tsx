@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import Input from "../../common/components/Input";
 import Textarea from "../../common/components/Textarea";
 import { TaskContext } from "../../util/Context/task";
-import { Types } from "../../util/Context/task/reducerTask";
+import { Types } from "../../util/Context/task/Task.interface";
 import validationSchema from "./AddTask.validation";
 
 interface IAddTask {

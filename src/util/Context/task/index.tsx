@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, Dispatch, useEffect } from "react";
-import { TaskAction, taskReducer } from "./reducerTask";
-import { ITask } from "./Task.interface";
+import { taskReducer } from "./reducerTask";
+import { ITask, TaskAction } from "./Task.interface";
 
 type TContextTask = {
   children: React.ReactNode;

@@ -5,7 +5,7 @@ import { FaCheck, FaTimes } from "react-icons/fa";
 import { TaskContext } from "../../util/Context/task";
 import EmptyList from "../EmptyList";
 
-import { Types } from "../../util/Context/task/reducerTask";
+import { Types } from "../../util/Context/task/Task.interface";
 import { IListTask } from "./ListToTasks.interface";
 import { toast } from "react-toastify";
 import Switch from "../../common/components/Switch";
@@ -33,8 +33,8 @@ export default function ListToTasks() {
   };
 
   const handleAction = (position?: number) => {
-    const newList = list.map((item) => {
-      if (item.id === position) {
+    const newList = list.map((item, index) => {
+      if (index === position) {
         const updatedItem = {
           ...item,
           action: !item.action,
@@ -47,8 +47,8 @@ export default function ListToTasks() {
     setList(newList);
   };
 
-  const completeTask = (id: number, name: string): void => {
-    dispatch({ type: Types.Complete, payload: { id } });
+  const completeTask = (index: number, name: string): void => {
+    dispatch({ type: Types.Complete, payload: { index } });
     toast.success(`${name} completada!`);
   };
 
@@ -81,8 +81,8 @@ export default function ListToTasks() {
     toogleModalClearingConfirm();
   };
 
-  const removeTask = (id: number, name: string): void => {
-    dispatch({ type: Types.Delete, payload: { id } });
+  const removeTask = (index: number, name: string): void => {
+    dispatch({ type: Types.Delete, payload: { index } });
     toast.info(`${name} deletada`);
   };
 
@@ -106,7 +106,7 @@ export default function ListToTasks() {
                   key={`${item.name}${index}`}
                   className="relative w-full rounded border-green-500 border-2 p-4 mb-5 cursor-pointer"
                   onClick={() =>
-                    item.complete === false ? handleAction(item.id) : undefined
+                    item.complete === false ? handleAction(index) : undefined
                   }
                 >
                   <div className="font-medium mb-2">{item.name}</div>
@@ -115,25 +115,27 @@ export default function ListToTasks() {
                       {item.observation}
                     </div>
                   ) : null}
-                  <motion.div
-                    variants={actions}
-                    initial="initial"
-                    animate={item.action ? "visible" : undefined}
-                    className="absolute w-full -bottom-7 left-0 z-10 flex px-2"
-                  >
-                    <div
-                      className="w-1/2 h-full bg-green-700/70 flex justify-center items-center rounded-l-md"
-                      onClick={() => completeTask(item.id, item.name)}
+                  {item.action ? (
+                    <motion.div
+                      variants={actions}
+                      initial="initial"
+                      animate={item.action ? "visible" : undefined}
+                      className="absolute w-full -bottom-7 left-0 z-10 flex px-2"
                     >
-                      <FaCheck size={22} className="text-white" />
-                    </div>
-                    <div
-                      className="w-1/2 h-full bg-red-700/70 flex justify-center items-center rounded-r-md"
-                      onClick={() => removeTask(item.id, item.name)}
-                    >
-                      <FaTimes size={22} className="text-white" />
-                    </div>
-                  </motion.div>
+                      <div
+                        className="w-1/2 h-full bg-green-700/70 flex justify-center items-center rounded-l-md"
+                        onClick={() => completeTask(index, item.name)}
+                      >
+                        <FaCheck size={22} className="text-white" />
+                      </div>
+                      <div
+                        className="w-1/2 h-full bg-red-700/70 flex justify-center items-center rounded-r-md"
+                        onClick={() => removeTask(index, item.name)}
+                      >
+                        <FaTimes size={22} className="text-white" />
+                      </div>
+                    </motion.div>
+                  ) : null}
                 </li>
               ))}
           </ul>
