@@ -7,7 +7,11 @@ import { TaskContext } from "../../util/Context/task";
 import { Types } from "../../util/Context/task/reducerTask";
 import validationSchema from "./AddTask.validation";
 
-export default function AddTask() {
+interface IAddTask {
+  onCLose?: () => void;
+}
+
+export default function AddTask({ onCLose }: IAddTask) {
   const { dispatch } = useContext(TaskContext);
 
   const initialValues = {
@@ -19,6 +23,7 @@ export default function AddTask() {
     dispatch({ type: Types.Create, payload: values });
     formikHelpers.resetForm({ values: initialValues });
     toast.success(`Tarefa ${values.name} criada.`);
+    onCLose?.();
   };
 
   const { values, errors, touched, handleChange, handleSubmit } = useFormik({

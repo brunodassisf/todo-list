@@ -6,19 +6,21 @@ import { TaskContext } from "../../util/Context/task";
 import EmptyList from "../EmptyList";
 
 import { Types } from "../../util/Context/task/reducerTask";
-import { ITask } from "../../util/Context/task/Task.interface";
-
-interface ITaskImplement extends ITask {
-  action?: boolean;
-}
+import { IListTask } from "./ListToTasks.interface";
+import { toast } from "react-toastify";
+import Switch from "../../common/components/Switch";
+import Modal from "../../common/components/Modal";
 
 export default function ListToTasks() {
   const { tasks, dispatch } = useContext(TaskContext);
 
-  const [list, setList] = useState<ITaskImplement[]>([]);
+  const [clearingConfirm, setclearingConfirm] = useState<boolean>(false);
+
+  const [list, setList] = useState<IListTask[]>([]);
   const [status, setStatus] = useState<boolean>(false);
 
   const toogleStatus = () => setStatus(!status);
+  const toogleModalClearingConfirm = () => setclearingConfirm(!clearingConfirm);
 
   useEffect(() => {
     setList(tasks);
@@ -30,9 +32,9 @@ export default function ListToTasks() {
     hidden: { opacity: 0, x: -100 },
   };
 
-  const handleAction = (position: number) => {
-    const newList = list.map((item, index) => {
-      if (index === position) {
+  const handleAction = (position?: number) => {
+    const newList = list.map((item) => {
+      if (item.id === position) {
         const updatedItem = {
           ...item,
           action: !item.action,
@@ -45,46 +47,67 @@ export default function ListToTasks() {
     setList(newList);
   };
 
-  const completeTask = (id: number) => {
+  const completeTask = (id: number, name: string): void => {
     dispatch({ type: Types.Complete, payload: { id } });
+    toast.success(`${name} completada!`);
   };
 
-  const countTasks = (st: boolean): number => {
-    return list.filter((item) => item.complete === st).length;
+  const countTasks = (st: boolean): string => {
+    const count = list.filter((item) => item.complete === st).length;
+    const text = status ? "Completadas" : "A fazer";
+    return `${count} ${text} `;
+  };
+
+  const renderClearTasks = () => {
+    return (
+      <div className="flex">
+        <h3 className="text-xl text-gray-500">Minhas Tarefas</h3>
+        {tasks.length > 0 ? (
+          <button
+            type="button"
+            className="ml-2 flex items-center text-red-600 border-red-600 border rounded-full px-3 py-1 cursor-pointer gap-1"
+            onClick={toogleModalClearingConfirm}
+          >
+            <FaTimes />
+            <h6>Limpar</h6>
+          </button>
+        ) : null}
+      </div>
+    );
+  };
+
+  const handleClearingTasks = () => {
+    dispatch({ type: Types.Clear, payload: {} });
+    toogleModalClearingConfirm();
+  };
+
+  const removeTask = (id: number, name: string): void => {
+    dispatch({ type: Types.Delete, payload: { id } });
+    toast.info(`${name} deletada`);
   };
 
   return (
     <>
       {list.length > 0 ? (
-        <div className="mr-3 mt-4">
-          <h3 className="text-xl text-gray-500 mb-4 pb-2 font-semibold border-b-2 flex justify-between">
-            Minhas Tarefas
-            <label className="relative inline-flex items-center mr-5 cursor-pointer">
-              <input
-                type="checkbox"
-                value=""
-                className="sr-only peer"
-                checked={status}
-              />
-              <div
-                className="w-12 h-6 bg-gray-200 rounded-full peer dark:bg-gray-400  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[5px] after:left-[8px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all  peer-checked:bg-green-600"
-                onClick={toogleStatus}
-              ></div>
-              <span className="ml-3 w-28 text-sm font-medium text-gray-700">
-                {status
-                  ? `${countTasks(true)} Completadas`
-                  : `${countTasks(false)} a fazer`}
-              </span>
-            </label>
-          </h3>
-          <ul className="grid grid-cols-4 gap-3">
+        <div className="mx-4 md:mr-3 md:mx-0 ">
+          <div className="mb-4 pb-2 font-semibold border-b-2 flex justify-between items-start lg:items-center flex-col md:flex-row gap-4">
+            {renderClearTasks()}
+            <Switch
+              check={status}
+              toogle={toogleStatus}
+              labelByTheChecked={() => countTasks(status)}
+            />
+          </div>
+          <ul className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {list
               .filter((item) => item.complete === status)
               .map((item, index) => (
                 <li
                   key={`${item.name}${index}`}
                   className="relative w-full rounded border-green-500 border-2 p-4 mb-5 cursor-pointer"
-                  onClick={() => handleAction(index)}
+                  onClick={() =>
+                    item.complete === false ? handleAction(item.id) : undefined
+                  }
                 >
                   <div className="font-medium mb-2">{item.name}</div>
                   {item.observation ? (
@@ -100,11 +123,14 @@ export default function ListToTasks() {
                   >
                     <div
                       className="w-1/2 h-full bg-green-700/70 flex justify-center items-center rounded-l-md"
-                      onClick={() => completeTask(item.id)}
+                      onClick={() => completeTask(item.id, item.name)}
                     >
                       <FaCheck size={22} className="text-white" />
                     </div>
-                    <div className="w-1/2 h-full bg-red-700/70 flex justify-center items-center rounded-r-md">
+                    <div
+                      className="w-1/2 h-full bg-red-700/70 flex justify-center items-center rounded-r-md"
+                      onClick={() => removeTask(item.id, item.name)}
+                    >
                       <FaTimes size={22} className="text-white" />
                     </div>
                   </motion.div>
@@ -115,6 +141,20 @@ export default function ListToTasks() {
       ) : (
         <EmptyList />
       )}
+      <Modal open={clearingConfirm} onClose={toogleModalClearingConfirm}>
+        <>
+          <h3 className="text-center text-xl font-medium mb-5">
+            Deseja limpar sua lista de tarefas?
+          </h3>
+          <button
+            type="submit"
+            className="w-full bg-green-400 rounded py-3 text-white hover:bg-green-500 transition-all"
+            onClick={handleClearingTasks}
+          >
+            Limpar
+          </button>
+        </>
+      </Modal>
     </>
   );
 }
