@@ -1,0 +1,14 @@
+.container_switch {
+  @apply relative inline-flex items-center mr-5 cursor-pointer;
+}
+
+.switch {
+  @apply w-12 h-6 rounded-full;
+  @apply bg-gray-200;
+  @apply after:content-[''] after:absolute after:top-[4px] after:left-[5px] after:peer-checked:left-2.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all;
+  @apply peer-checked:after:translate-x-full peer-checked:after:border-white  peer-checked:bg-green-600;
+}
+
+.switch_label {
+  @apply ml-3 w-28 text-sm font-medium text-gray-700;
+}

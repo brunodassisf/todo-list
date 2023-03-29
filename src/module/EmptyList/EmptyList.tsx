@@ -1,11 +1,13 @@
 import { BiTaskX } from "react-icons/bi";
 
+import "./EmptyList.style.css";
+
 export default function EmptyList() {
   return (
-    <div className="flex justify-center items-center h-full">
-      <div className="flex flex-col items-center text-gray-400">
+    <div className="empty_list">
+      <div>
         <BiTaskX size={48} />
-        <h3 className="mt-2 font-medium">Você não possui tarefas</h3>
+        <h3>Você não possui tarefas</h3>
       </div>
     </div>
   );

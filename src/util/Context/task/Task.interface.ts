@@ -1,3 +1,7 @@
+export type TContextTask = {
+  children: React.ReactNode;
+};
+
 export type ITask = {
   name: string;
   observation: string;
@@ -28,11 +32,11 @@ type TaskPayload = {
     observation: string;
   };
   [Types.Complete]: {
-    index: number;
+    name: string;
   };
   [Types.Clear]: {};
   [Types.Delete]: {
-    index: number;
+    name: string;
   };
 };
 

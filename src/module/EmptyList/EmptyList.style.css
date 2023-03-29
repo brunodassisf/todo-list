@@ -1,0 +1,11 @@
+.empty_list {
+  @apply flex justify-center items-center h-full;
+}
+
+.empty_list div {
+  @apply flex flex-col items-center text-gray-400;
+}
+
+.empty_list h3 {
+  @apply mt-2 font-medium;
+}

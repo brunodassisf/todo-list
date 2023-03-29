@@ -1,0 +1,77 @@
+.container_list_tasks {
+  @apply mx-4;
+  @apply md:mr-3 md:mx-0;
+}
+
+.container_list_tasks__title {
+  @apply mb-4 pb-2 gap-4;
+  @apply flex justify-between items-start flex-col;
+  @apply font-semibold border-b-2;
+  @apply lg:items-end lg:flex-row;
+}
+
+.container_list_tasks__title .nav {
+  @apply mt-4 w-full;
+  @apply flex items-end justify-between;
+  @apply lg:w-auto;
+}
+
+.container_list_tasks__title .nav h3 {
+  @apply text-xl;
+  @apply text-gray-500;
+}
+
+.container_list_tasks__title .nav_button {
+  @apply ml-2 px-3 py-1 gap-1;
+  @apply flex items-center;
+  @apply text-red-600 border-red-600;
+  @apply border rounded-full cursor-pointer;
+}
+
+.container_list_tasks ul {
+  @apply grid grid-cols-2 gap-3;
+  @apply md:grid-cols-4;
+}
+
+.container_list_tasks ul li {
+  @apply relative rounded border-2 cursor-pointer;
+  @apply p-4 mb-5;
+  @apply border-green-500;
+}
+
+.container_list_tasks ul li h4 {
+  @apply mb-2;
+  @apply font-medium;
+}
+
+.container_list_tasks ul li h5 {
+  @apply text-start border-t;
+  @apply text-base;
+  @apply border-gray-500  text-gray-600;
+}
+
+.container_actions {
+  @apply absolute -bottom-7 left-0 z-10;
+  @apply w-full px-2;
+  @apply flex;
+}
+
+.container_actions__complete {
+  @apply w-1/2 h-full rounded-l-md;
+  @apply bg-green-700/70;
+  @apply flex justify-center items-center;
+}
+
+.container_actions__remove {
+  @apply w-1/2 h-full rounded-l-md;
+  @apply bg-red-700/70;
+  @apply flex justify-center items-center;
+}
+
+.container_modal_remove h3 {
+  @apply text-center text-xl font-medium mb-5;
+}
+
+.container_modal_remove button {
+  @apply w-full bg-green-400 rounded py-3 text-white hover:bg-green-500 transition-all;
+}

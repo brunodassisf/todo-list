@@ -11,7 +11,7 @@ export default function Textarea({
   return (
     <textarea
       name={name}
-      className={`${styleBorder[handleBorder(styleInput)]} input`}
+      className={`${styleBorder[handleBorder(styleInput)]}`}
       placeholder={placeholder}
       {...props}
     />

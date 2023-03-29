@@ -1,11 +1,16 @@
-import { FormikHelpers, useFormik } from "formik";
 import { useContext } from "react";
+
+import { FormikHelpers, useFormik } from "formik";
 import { toast } from "react-toastify";
+
 import Input from "../../common/components/Input";
 import Textarea from "../../common/components/Textarea";
+
 import { TaskContext } from "../../util/Context/task";
 import { Types } from "../../util/Context/task/Task.interface";
 import validationSchema from "./AddTask.validation";
+
+import "./AddTask.style.css";
 
 interface IAddTask {
   onCLose?: () => void;
@@ -33,11 +38,9 @@ export default function AddTask({ onCLose }: IAddTask) {
   });
 
   return (
-    <div className="p-4">
-      <h3 className="text-xl mb-7 font-medium text-gray-600">
-        Adicionar tarefa
-      </h3>
-      <form className="gap-7 grid" onSubmit={handleSubmit}>
+    <div className="container_add_task">
+      <h3>Adicionar tarefa</h3>
+      <form onSubmit={handleSubmit}>
         <Input
           type="search"
           name="name"
@@ -56,21 +59,14 @@ export default function AddTask({ onCLose }: IAddTask) {
         />
 
         {touched ? (
-          <ul className="list-disc ml-5">
+          <ul>
             {Object.values(errors).map((item, index) => (
-              <li key={index} className="text-red-600">
-                {item}
-              </li>
+              <li key={index}>{item}</li>
             ))}
           </ul>
         ) : null}
 
-        <button
-          type="submit"
-          className="w-full bg-green-400 rounded py-3 text-white hover:bg-green-500 transition-all"
-        >
-          Criar
-        </button>
+        <button type="submit">Criar</button>
       </form>
     </div>
   );

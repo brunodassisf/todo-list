@@ -1,0 +1,15 @@
+.logo {
+  @apply flex items-center text-green-900;
+}
+
+.logo h4 {
+  @apply font-medium text-lg text-green-900 ml-3;
+}
+
+.mobile-add-button {
+  @apply flex lg:hidden;
+}
+
+.mobile-add-button button {
+  @apply text-green-800 font-semibold border-2 border-green-800 rounded-full p-2 flex items-center;
+}

@@ -1,0 +1,19 @@
+.container_add_task {
+  @apply p-4;
+}
+
+.container_add_task h3 {
+  @apply text-xl mb-7 font-medium text-gray-600;
+}
+
+.container_add_task ul {
+  @apply list-disc ml-5;
+}
+
+.container_add_task ul li {
+  @apply text-red-600;
+}
+
+.container_add_task button {
+  @apply w-full bg-green-400 rounded py-3 text-white hover:bg-green-500 transition-all;
+}

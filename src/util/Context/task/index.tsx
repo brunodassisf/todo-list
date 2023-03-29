@@ -1,19 +1,7 @@
 import React, { createContext, useReducer, Dispatch, useEffect } from "react";
-import { taskReducer } from "./reducerTask";
-import { ITask, TaskAction } from "./Task.interface";
-
-type TContextTask = {
-  children: React.ReactNode;
-};
-
-const getTasks = (): ITask[] => {
-  const item = localStorage.getItem("MY_TASK");
-  if (item) {
-    const tasks = JSON.parse(item);
-    return tasks;
-  }
-  return [];
-};
+import { getTasks } from "../../getTasks";
+import { reducerTasks } from "./reducerTask";
+import { ITask, TaskAction, TContextTask } from "./Task.interface";
 
 export const TaskContext = createContext<{
   tasks: ITask[];
@@ -24,7 +12,7 @@ export const TaskContext = createContext<{
 });
 
 export const TaskContextProvider = ({ children }: TContextTask) => {
-  const [tasks, dispatch] = useReducer(taskReducer, getTasks());
+  const [tasks, dispatch] = useReducer(reducerTasks, getTasks());
 
   useEffect(() => {
     localStorage.setItem("MY_TASK", JSON.stringify(tasks));

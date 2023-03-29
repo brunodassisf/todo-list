@@ -5,14 +5,30 @@
 @layer base {
   html,
   body,
-  main,
   #root {
     @apply h-full;
+  }
+  main {
+    height: calc(100vh - 70px);
   }
 }
 
 @layer components {
-  .input {
-    @apply block w-full p-3 text-sm text-gray-900 border rounded-md bg-white focus:ring-offset-0 focus:ring transition-all outline-none;
+  header {
+    @apply bg-green-300 py-4 drop-shadow;
+  }
+
+  nav {
+    @apply container flex justify-between mx-auto px-4 md:px-0;
+  }
+
+  input,
+  textarea {
+    @apply block w-full p-3 text-sm text-gray-900 border rounded-md bg-white transition-all outline-none;
+    @apply focus:ring-offset-0 focus:ring;
+  }
+
+  form {
+    @apply gap-7 grid;
   }
 }

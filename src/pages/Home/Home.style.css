@@ -1,0 +1,27 @@
+.container_home {
+  @apply relative container mx-auto h-full;
+}
+
+.container_home__grid {
+  @apply grid grid-cols-4 divide-x-4 divide-green-200 h-full;
+}
+
+.container_home__grid___tasks {
+  @apply col-span-4 lg:col-span-3;
+}
+
+.container_home__grid___add_task {
+  @apply hidden lg:block col-span-1;
+}
+
+.container_home__float_button {
+  @apply fixed right-5  bottom-5 cursor-pointer shadow-xl rounded-full;
+}
+
+.container_home__float_button svg {
+  @apply text-purple-900 z-0;
+}
+
+.container_home__float_button span {
+  @apply animate-ping absolute top-1 left-1 h-10 w-10 -z-10 rounded-full bg-purple-400 opacity-75;
+}
