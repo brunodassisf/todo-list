@@ -34,7 +34,7 @@
 }
 
 .container_list_tasks ul li {
-  @apply relative rounded border-2 cursor-pointer;
+  @apply relative rounded border-2 cursor-pointer break-all;
   @apply p-4 mb-5;
   @apply border-green-500;
 }
@@ -63,7 +63,7 @@
 }
 
 .container_actions__remove {
-  @apply w-1/2 h-full rounded-l-md;
+  @apply w-1/2 h-full rounded-r-md;
   @apply bg-red-700/70;
   @apply flex justify-center items-center;
 }

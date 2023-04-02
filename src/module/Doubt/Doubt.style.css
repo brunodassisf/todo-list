@@ -1,0 +1,43 @@
+.container_doubt {
+  @apply w-full px-4 overflow-y-scroll max-h-[450px];
+  @apply grid grid-cols-2;
+}
+
+.container_doubt__animate {
+  @apply col-span-2;
+  @apply md:col-span-1 md:pt-10;
+}
+
+.container_doubt__first {
+  @apply col-span-2;
+  @apply md:col-span-1;
+}
+
+.container_doubt__first h4 {
+  @apply my-5;
+  @apply font-bold text-xl text-center;
+  @apply md:text-start;
+}
+.container_doubt__first .container_actions__complete {
+  @apply w-14 py-2 mx-auto mt-2 text-white;
+}
+
+.container_doubt__second .swith_example {
+  @apply my-4;
+  @apply justify-center;
+  @apply block md:flex;
+}
+
+.container_doubt__second {
+  @apply mt-4;
+  @apply col-span-2;
+}
+
+.container_doubt__second .container_actions__remove {
+  @apply w-14 py-1 mx-auto my-4;
+}
+
+.container_list_tasks__title {
+  @apply pt-3 mb-3;
+  @apply flex-row justify-center !important;
+}

@@ -14,14 +14,20 @@
   @apply hidden lg:block col-span-1;
 }
 
-.container_home__float_button {
+.container_home__float_github {
   @apply fixed right-5  bottom-5 cursor-pointer shadow-xl rounded-full;
 }
 
-.container_home__float_button svg {
+.container_home__float_github svg {
   @apply text-purple-900 z-0;
 }
 
-.container_home__float_button span {
+.container_home__float_github span {
   @apply animate-ping absolute top-1 left-1 h-10 w-10 -z-10 rounded-full bg-purple-400 opacity-75;
+}
+
+.container_home__float_doubt {
+  @apply fixed right-5  bottom-[5rem] shadow-xl gap-2 border-4 rounded-full p-2 cursor-pointer;
+  @apply flex items-center;
+  @apply border-yellow-600 text-yellow-600;
 }

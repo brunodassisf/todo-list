@@ -10,7 +10,9 @@ import "./Header.style.css";
 
 export default function Header() {
   const [modalTask, setModalTasks] = useState<boolean>(false);
+
   const toogleModal = () => setModalTasks(!modalTask);
+
   return (
     <>
       <header>
@@ -20,6 +22,7 @@ export default function Header() {
             <RiFileList3Line size={36} />
             <h4>Lista de tarefas</h4>
           </div>
+
           <div className="mobile-add-button">
             <button type="button" onClick={toogleModal}>
               <FaPlus size={18} />

@@ -11,6 +11,26 @@
   main {
     height: calc(100vh - 70px);
   }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: gray;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  *::-webkit-scrollbar-track {
+    @apply bg-gray-800;
+    @apply rounded;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply bg-gray-500;
+    @apply border-gray-600 border;
+  }
 }
 
 @layer components {
