@@ -18,8 +18,10 @@
   @apply font-bold text-xl text-center;
   @apply md:text-start;
 }
-.container_doubt__first .container_actions__complete {
-  @apply w-14 py-2 mx-auto mt-2 text-white;
+.btn_complete_task {
+  @apply w-14 py-2 mx-auto mt-2 text-white rounded-l-md;
+  @apply bg-green-700/70;
+  @apply flex justify-center items-center;
 }
 
 .container_doubt__second .swith_example {
@@ -33,11 +35,19 @@
   @apply col-span-2;
 }
 
-.container_doubt__second .container_actions__remove {
-  @apply w-14 py-1 mx-auto my-4;
+.btn_remove_task {
+  @apply w-16 py-1 mx-auto my-3 h-full rounded-r-md;
+  @apply bg-red-700/70;
+  @apply flex justify-center items-center;
 }
 
-.container_list_tasks__title {
-  @apply pt-3 mb-3;
-  @apply flex-row justify-center !important;
+.btn_remove_tasks {
+  @apply my-4;
+}
+
+.btn_remove_tasks button {
+  @apply px-3 py-1 gap-1 mx-auto;
+  @apply flex items-center;
+  @apply text-red-600 border-red-600;
+  @apply border rounded-full cursor-pointer;
 }

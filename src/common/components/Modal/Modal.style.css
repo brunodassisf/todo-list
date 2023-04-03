@@ -16,5 +16,5 @@
 }
 
 .screen_opacity {
-  @apply fixed bg-black/70 w-full h-full top-0 left-0;
+  @apply fixed bg-black/70 w-full h-full top-0 left-0 z-10;
 }

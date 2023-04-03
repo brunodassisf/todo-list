@@ -19,7 +19,7 @@ export default function Doubt() {
           observação (opcional). Caso a tarefa já tenha sido concluída, basta
           clicar em cima dela e no botão verde, para que a tarefa fique na
           <strong> lista de completadas</strong>
-          <div className="container_actions__complete">
+          <div className="btn_complete_task">
             <FaCheck size={16} />
           </div>
         </p>
@@ -45,7 +45,7 @@ export default function Doubt() {
           Caso deseje excluir uma tarefa que ainda não foi concluída, basta
           clicar em cima da tarefa e em seguida clicar no botão vermelho, assim
           a tarefa será excluída.
-          <div className="container_actions__remove ">
+          <div className="btn_remove_task">
             <FaTimes size={22} className="text-white" />
           </div>
         </p>
@@ -54,8 +54,8 @@ export default function Doubt() {
           vermelho, onde todas as tarefas
           <strong> A fazer/Completas </strong>
           serão excluidas do seu dispositivo.
-          <div className="container_list_tasks__title">
-            <button type="button" className="nav_button">
+          <div className="btn_remove_tasks">
+            <button type="button">
               <FaTimes />
               <h6>Limpar</h6>
             </button>
