@@ -22,6 +22,7 @@ Foi usado a CLI com `create-react-app` para criar o setup inicial do nosso proje
 - React-toastify (Exibição de mensagens para o usuário).
 - Framer-motion (Criar efeitos de transições de acordo com a necessidade dos componentes ReactJS).
 - React-icons (Icones desenvolvidos para ReactJS).
+- React-lottie (Adiciona o uso de animações com JSON).
 
 ## Links
 
@@ -31,6 +32,7 @@ Foi usado a CLI com `create-react-app` para criar o setup inicial do nosso proje
 - [React-toastify](https://fkhadra.github.io/react-toastify/introduction/)
 - [React-icons](https://react-icons.github.io/react-icons/)
 - [Framer-motion](https://www.framer.com/motion/)
+- [React-lottie](https://lottiereact.com)
 
 ## Screen
 
