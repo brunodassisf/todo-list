@@ -38,13 +38,13 @@ Foi usado a CLI com `create-react-app` para criar o setup inicial do nosso proje
 
 ### Desktop
 
-![image](https://user-images.githubusercontent.com/33126607/228323808-bd0fe60c-e25f-4531-96b3-744da3e65be4.png)
+![image](https://user-images.githubusercontent.com/33126607/229554095-70a20ad9-6525-49fa-a915-fce89a0c6c76.png)
 
-![image](https://user-images.githubusercontent.com/33126607/228324047-2077a859-af5e-43f2-b164-36a63e44442e.png)
+![image](https://user-images.githubusercontent.com/33126607/229554626-855b3a17-5d03-4406-bac3-9829b1fbd42d.png)
 
 ### Mobile
 
-![image](https://user-images.githubusercontent.com/33126607/228324343-769eec58-fbe0-46e7-841c-bfb2272ebe22.png)
+![image](https://user-images.githubusercontent.com/33126607/229554218-911eeb74-5892-4ca1-af5b-5cd7afc3395c.png)
 
-![image](https://user-images.githubusercontent.com/33126607/228324165-7932d57d-451d-4549-aee0-fd93815a4c4b.png)
+![image](https://user-images.githubusercontent.com/33126607/229554534-11dc8a80-9126-4ea2-aa85-14688c1ec900.png)
 
